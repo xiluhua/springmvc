@@ -10,5 +10,76 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-
+	<!-- 配置自动扫描的包 
+		org.springframework.context.annotation.ClassPathBeanDefinitionScanner
+		不会被注册到 beanDefinition 容器中，但是会扫描 @Component 注解的类，把他们注册到 beanDefinition 容器
+	-->
+	<context:component-scan base-package="com.springmvc"></context:component-scan>
+	
+	<!-- 默认的解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 以下三个标签必须一起出现，不然会发生请求无法转发，静态资源无法访问 -->
+	<!-- 配置直接转发的页面 
+		org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
+		org.springframework.web.servlet.mvc.ParameterizableViewController
+	-->
+	<mvc:view-controller path="" view-name="index"/>
+	<mvc:view-controller path="success" view-name="success"/>
+	<!-- 
+		org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+		org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
+		内部类：CompositeUriComponentsContributorFactoryBean
+		org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor
+		org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver
+		org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver
+		org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver
+	-->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- 
+		org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
+		org.springframework.web.servlet.handler.SimpleUrlHandlerMapping: 控制访问静态 html 页面
+		org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
+		org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter
+		org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter
+		mvcHandlerMappingIntrospector
+	-->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 配置视图解析器：使用视图的名字来解析视图 -->
+	<!-- 通过 order 属性来定义视图的优先级， order 值越小优先级越高 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="100"></property>
+	</bean>
+	
+	<!-- 配置上传组件 multipart -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding"        value="utf-8"></property>
+		<property name="maxUploadSizePerFile"   value="1024000"></property>
+	</bean>
+	
+	<!-- 配置自定义的拦截器 -->
+	<mvc:interceptors>
+		<bean class="com.springmvc.interceptor.MyInterceptor"></bean>
+		
+		<!-- 配置拦截器（不）作用的路径 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/C18"/>
+			<bean class="com.springmvc.interceptor.YourInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 配置使用 Simple -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
+

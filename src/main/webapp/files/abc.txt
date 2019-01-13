@@ -1,0 +1,9 @@
+testtesttesttesttesttesttesttesttesttesttest
+/**
+	 * 支付宝-支付信息form表单跳转页面 2.0 版本的支付
+	 * 20180611 zhangyifa 999999999999999999999999999999999999999999999
+	 * @throws IOException
+	 */
+	@Action(value = "alipayapi2")
+	public void alipayapi2() throws Exception {
+testtesttesttesttesttesttesttesttesttesttest
