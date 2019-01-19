@@ -8,7 +8,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#C19").click(function(){
-		var url = '${base}/C192'
+		var url = '${base}/C19'
 		var arg = {};
 		$.post(url, arg, function(data){
 			alert(JSON.stringify(data))
