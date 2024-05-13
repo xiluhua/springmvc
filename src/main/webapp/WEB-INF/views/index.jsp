@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${base}/css/bootstrap.5.3.0.min.css">
 <script type="text/javascript" src="${base}/javascript/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="${base}/javascript/bootstrap.5.3.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$("#C19").click(function(){
@@ -21,6 +23,19 @@ $(function(){
 </head>
 <body>
 	<h1>首页</h1>
+    <h3>美食</h3>
+<%--    nginx 动静分离测试用 begin --%>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+<%--    <button type="button" class="btn btn-warning">Warning</button>--%>
+<%--    <button type="button" class="btn btn-info">Info</button>--%>
+<%--    <button type="button" class="btn btn-light">Light</button>--%>
+<%--    <button type="button" class="btn btn-dark">Dark</button>--%>
+    <img src="${base}/img/food.jpg" height="400px" width="500px"/>
+    <%--    nginx 动静分离测试用 over   --%>
+    <hr>
 	<a href="${base}/B1">TestB1.@RequestMapping.on.method</a>
 	<br>
 	<a href="${base}/2/B2">TestB2.@RequestMapping.on.class</a>
