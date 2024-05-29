@@ -81,5 +81,15 @@
 			</props>
 		</property>
 	</bean>
+
+	<!-- 20240529
+	避免转换json 报错： No converter found for return value of type: class com.springmvc.pojo.Result
+	-->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 </beans>
 

@@ -1,3 +1,7 @@
+## 这两个包必须配合使用，否则会报错: NoClassDefFoundError: com/fasterxml/jackson/databind/exc/InvalidDefinitionException
+<spring.version>4.3.7.RELEASE</spring.version>
+<jackson.version>2.8.8</jackson.version>
+
 ## git 地址
 git@github.com:xiluhua/springmvc.git
 
