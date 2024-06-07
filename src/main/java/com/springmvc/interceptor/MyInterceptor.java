@@ -3,7 +3,6 @@ package com.springmvc.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +25,7 @@ public class MyInterceptor implements HandlerInterceptor{
 	 * @category 可以对请求域中的属性或视图进行修改
 	 */
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable ModelAndView modelAndView) throws Exception {
+			 ModelAndView modelAndView) throws Exception {
 		System.out.println("MyInterceptor postHandle ...");
 
 	}
@@ -36,7 +35,7 @@ public class MyInterceptor implements HandlerInterceptor{
 	 * @category 可以用来释放资源
 	 */
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
-			@Nullable Exception ex) throws Exception {
+			 Exception ex) throws Exception {
 		System.out.println("MyInterceptor afterCompletion ...");
 
 	}
